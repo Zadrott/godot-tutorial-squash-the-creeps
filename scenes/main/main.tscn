@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c385sp4m4irnl"]
+[gd_scene load_steps=9 format=3 uid="uid://c385sp4m4irnl"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_07d77"]
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_07d77"]
 [ext_resource type="PackedScene" uid="uid://bxfjfw0wc08q7" path="res://player.tscn" id="1_7jlwg"]
+[ext_resource type="PackedScene" uid="uid://bgn6opoxq5ypp" path="res://scenes/pause_menu/pause_menu.tscn" id="3_dkmp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_unc3u"]
 size = Vector3(30, 1, 30)
@@ -76,11 +77,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 curve = SubResource("Curve3D_kfyow")
 
 [node name="Spawnlocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(-0.0155739, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0155739, -11.8415, 0, -18.9562)
+transform = Transform3D(0.0103346, 0, -0.999926, 0, 1, 0, 0.999926, 0, 0.0103346, -16.4009, 0, -18.1917)
 rotation_mode = 1
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_dkmp2")]
+visible = false
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
