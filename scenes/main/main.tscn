@@ -17,16 +17,13 @@ albedo_color = Color(1, 0.117647, 1, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_kfyow"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.4009, 0, -18.1917, 0, 0, 0, 0, 0, 0, 9.05489, 0, -18.4548, 0, 0, 0, 0, 0, 0, 9.25223, 0, 9.50049, 0, 0, 0, 0, 0, 0, -16.3351, 0, 10.4871, 0, 0, 0, 0, 0, 0, -16.4009, 0, -18.1917),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -15.8507, 1.15002, 25.6443, 0, 0, 0, 0, 0, 0, -13.6135, 1.15002, -23.5748, 0, 0, 0, 0, 0, 0, 16.4487, 1.15002, -23.6629, 0, 0, 0, 0, 0, 0, 15.8458, 1.15002, 25.9772, 0, 0, 0, 0, 0, 0, -15.8507, 1.15002, 25.6443),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_07d77")
-
-[node name="Player" parent="." instance=ExtResource("1_7jlwg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4471, 0.0869786, -3.88085)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -39,37 +36,32 @@ shape = SubResource("BoxShape3D_unc3u")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_hebi2")
 
+[node name="Player" parent="." instance=ExtResource("1_7jlwg")]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.636401, 0.771358, 0, -0.771358, 0.636401, 0, 12.4344, 0)
-
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(0.996327, -0.0468598, -0.0716652, 0.0820842, 0.760918, 0.643635, 0.0243706, -0.647154, 0.76197, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(0.996409, 0.0222162, 0.0816984, -0.0356251, 0.985392, 0.166533, -0.0768052, -0.168845, 0.982646, 0.0965316, 6.64914, 17.2889)
-projection = 1
-current = true
-size = 20.0
+transform = Transform3D(0.945723, -0.206814, -0.250671, 0.324974, 0.601859, 0.729491, 0, -0.771358, 0.636401, 0, 12.4344, 0)
+shadow_enabled = true
+shadow_blur = 0.2
 
 [node name="Cylinders" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5321, 0.177855, 10.4987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1259, 0.177855, -23.7885)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.31238, 0, 9.49737)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8279, 0, -23.7907)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4006, 0.177855, -18.2633)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9469, 0.177855, 26.1043)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04927, 0, -18.7384)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8862, 0, 25.8336)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
@@ -77,7 +69,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 curve = SubResource("Curve3D_kfyow")
 
 [node name="Spawnlocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(0.0103346, 0, -0.999926, 0, 1, 0, 0.999926, 0, 0.0103346, -16.4009, 0, -18.1917)
+transform = Transform3D(0.998948, 0, -0.0454061, 0, 1, 0, 0.0454061, 0, 0.998948, -15.8507, 1.15002, 25.6443)
 rotation_mode = 1
 
 [node name="MobTimer" type="Timer" parent="."]
@@ -86,5 +78,14 @@ autostart = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_dkmp2")]
 visible = false
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+projection = 1
+current = true
+size = 30.0
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

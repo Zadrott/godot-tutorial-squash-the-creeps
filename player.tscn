@@ -12,11 +12,11 @@ collision_mask = 6
 script = ExtResource("1_kvm04")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00825375, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10608, 0)
 
 [node name="player" parent="Pivot" instance=ExtResource("1_qlgfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766078, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00375245, 0, 0.00375245, 0.999993, 0, 0.94094, 0)
+transform = Transform3D(1.41828, 0, 0, 0, 1.41827, -0.00532202, 0, 0.00532202, 1.41827, 0, 1.24331, 0)
 shape = SubResource("SphereShape3D_3b756")

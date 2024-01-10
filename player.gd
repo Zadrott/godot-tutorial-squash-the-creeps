@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @export var speed = 10.0
-@export var jump_velocity = 5.0
+@export var jump_velocity = 8.0
 @export var bounce_impulse = 4.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
