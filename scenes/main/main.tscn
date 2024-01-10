@@ -27,6 +27,9 @@ script = ExtResource("1_07d77")
 
 [node name="Player" parent="." instance=ExtResource("1_7jlwg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4471, 0.0869786, -3.88085)
+speed = 10.0
+jump_velocity = 5.0
+bounce_impulse = 4.0
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
