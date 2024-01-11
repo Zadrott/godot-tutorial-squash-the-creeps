@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c385sp4m4irnl"]
 
-[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_07d77"]
-[ext_resource type="PackedScene" uid="uid://bxfjfw0wc08q7" path="res://player.tscn" id="1_7jlwg"]
-[ext_resource type="PackedScene" uid="uid://bgn6opoxq5ypp" path="res://scenes/pause_menu/pause_menu.tscn" id="3_dkmp2"]
-[ext_resource type="Script" path="res://scenes/main/Score.gd" id="3_odu6o"]
+[ext_resource type="Script" path="res://screens/main/main.gd" id="1_07d77"]
+[ext_resource type="PackedScene" uid="uid://bxfjfw0wc08q7" path="res://entities/player/player.tscn" id="1_7jlwg"]
+[ext_resource type="PackedScene" uid="uid://bgn6opoxq5ypp" path="res://screens/pause_menu/pause_menu.tscn" id="3_dkmp2"]
+[ext_resource type="Script" path="res://screens/main/Score.gd" id="3_odu6o"]
 [ext_resource type="Theme" uid="uid://cfhpmj8r1ktku" path="res://ui_theme.tres" id="4_5aroa"]
-[ext_resource type="PackedScene" uid="uid://c7je5vqt6o6m1" path="res://scenes/gameover_menu/gameover_menu.tscn" id="5_nw6t5"]
+[ext_resource type="PackedScene" uid="uid://c7je5vqt6o6m1" path="res://screens/gameover_menu/gameover_menu.tscn" id="5_nw6t5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_unc3u"]
 size = Vector3(60, 2, 60)
@@ -66,6 +66,7 @@ shadow_enabled = true
 shadow_blur = 0.2
 
 [node name="Cylinders" type="Node3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -23)

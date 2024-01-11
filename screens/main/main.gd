@@ -1,19 +1,18 @@
 extends Node
 
-@export var mob_scene : PackedScene = preload("res://mob.tscn")	
+
+@export var mob_scene : PackedScene = preload("res://entities/mob/mob.tscn")	
 @onready var pause_menu = $PauseMenu
 @onready var gameover_menu = $GameoverMenu
 
 var paused = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		pause_game()
+
 
 func _on_mob_timer_timeout():
 	# We store the reference to the SpawnLocation node and player location.
@@ -29,7 +28,8 @@ func _on_mob_timer_timeout():
 	mob.initialize(mob_spawn_location.position, player_position)
 	add_child(mob)
 	
-	mob.connect("squashed", Callable($UserInterface/Score, "_on_mob_squashed"))
+	mob.squashed.connect($UserInterface/Score._on_mob_squashed.bind())
+
 
 func pause_game():
 	if paused:
@@ -40,14 +40,17 @@ func pause_game():
 		Engine.time_scale = 0
 		
 	paused = !paused
-	
+
+
 func game_over():
 	var score = $UserInterface/Score.text
 	gameover_menu.display_score(score)
 	gameover_menu.show()
-			
+
+
 func retry():
 	get_tree().reload_current_scene()
+	
 	
 func _on_player_hit():
 	$MobTimer.stop()

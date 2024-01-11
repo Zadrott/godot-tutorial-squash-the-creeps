@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
+
 signal hit
 
+# How fast the player moves in meters per second
 @export var speed = 14.0
+# Vertical impulse applied to the character upon jumping in meters per second.
 @export var jump_impulse = 20.0
+# Vertical impulse applied to the character upon bouncing over a mob in meters per second.
 @export var bounce_impulse = 8.0
+# The downward acceleration while in the air, in meters per second squared.
 @export var fall_acceleration = 75.0
 
 
@@ -16,6 +21,7 @@ func _physics_process(delta):
 	
 	handle_collisions()
 	
+
 # Get the input direction and store it in the native velocity variable
 func get_velocity_from_input(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -37,6 +43,7 @@ func get_velocity_from_input(delta):
 		# Handle jump.
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_impulse
+
 
 func handle_collisions():
 	# Iterate through all collisions that occurred this frame
@@ -60,9 +67,11 @@ func handle_collisions():
 				# Prevent further duplicate calls.
 				break
 	
+
 func die():
 	hit.emit()
 	queue_free()
+
 
 func _on_mob_detector_body_entered(body):
 	print(body.name)	
