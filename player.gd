@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
+signal hit
 
 @export var speed = 14.0
-@export var jump_velocity = 18.0
+@export var jump_impulse = 20.0
 @export var bounce_impulse = 8.0
 @export var fall_acceleration = 75.0
 
@@ -24,7 +25,7 @@ func get_velocity_from_input(delta):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		$Pivot.look_at(direction + transform.origin)
+		$Pivot.look_at(direction + position)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -35,18 +36,34 @@ func get_velocity_from_input(delta):
 	else:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = jump_velocity
+			velocity.y = jump_impulse
 
 func handle_collisions():
-	# Get all collisions since last processing
+	# Iterate through all collisions that occurred this frame
 	for index in range(get_slide_collision_count()):
+		# We get one of the collisions with the player
 		var collision = get_slide_collision(index)
 		var collider = collision.get_collider()
 		
+		# If the collision is with ground
+		if collider == null:
+			continue
+
 		# Detect if the player collided with a mob
 		if collider.is_in_group("mobs"):
 			# Detect if the collision happened from above
-			if Vector3.UP.dot(collision.get_normal()) > 0.1 :
+			if Vector3.UP.dot(collision.get_normal()) > 0.1:
+				# If so, we squash it and bounce.
 				collider.squash()
 				velocity.y = bounce_impulse
+				
+				# Prevent further duplicate calls.
+				break
 	
+func die():
+	hit.emit()
+	queue_free()
+
+func _on_mob_detector_body_entered(body):
+	print(body.name)	
+	die()
