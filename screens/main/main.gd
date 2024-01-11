@@ -30,6 +30,9 @@ func _on_mob_timer_timeout():
 	
 	mob.squashed.connect($UserInterface/Score._on_mob_squashed.bind())
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept") and $GameoverMenu.visible:
+		retry()
 
 func pause_game():
 	if paused:
