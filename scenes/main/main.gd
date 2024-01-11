@@ -2,6 +2,8 @@ extends Node
 
 @export var mob_scene : PackedScene = preload("res://mob.tscn")	
 @onready var pause_menu = $PauseMenu
+@onready var gameover_menu = $GameoverMenu
+
 var paused = false
 
 # Called when the node enters the scene tree for the first time.
@@ -14,13 +16,20 @@ func _process(delta):
 		pause_game()
 
 func _on_mob_timer_timeout():
-	var mob = mob_scene.instantiate()
-	var mob_spawn_location = $SpawnPath/Spawnlocation
-	var player_position = $Player.transform.origin
+	# We store the reference to the SpawnLocation node and player location.
+	var mob_spawn_location = get_node("SpawnPath/SpawnLocation")
+	var player_position = $Player.position
 	
+	# Create a new instance of the Mob scene.
+	var mob = mob_scene.instantiate()
+	# Choose a random location on the SpawnPath and give it a random offset.
 	mob_spawn_location.progress_ratio = randf()
+	
+	# Spawn the mob by adding it to the Main scene.
+	mob.initialize(mob_spawn_location.position, player_position)
 	add_child(mob)
-	mob.initialize(mob_spawn_location.transform.origin, player_position)
+	
+	mob.connect("squashed", Callable($UserInterface/Score, "_on_mob_squashed"))
 
 func pause_game():
 	if paused:
@@ -32,3 +41,14 @@ func pause_game():
 		
 	paused = !paused
 	
+func game_over():
+	var score = $UserInterface/Score.text
+	gameover_menu.display_score(score)
+	gameover_menu.show()
+			
+func retry():
+	get_tree().reload_current_scene()
+	
+func _on_player_hit():
+	$MobTimer.stop()
+	game_over()

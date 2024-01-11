@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c385sp4m4irnl"]
+[gd_scene load_steps=12 format=3 uid="uid://c385sp4m4irnl"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_07d77"]
 [ext_resource type="PackedScene" uid="uid://bxfjfw0wc08q7" path="res://player.tscn" id="1_7jlwg"]
 [ext_resource type="PackedScene" uid="uid://bgn6opoxq5ypp" path="res://scenes/pause_menu/pause_menu.tscn" id="3_dkmp2"]
+[ext_resource type="Script" path="res://scenes/main/Score.gd" id="3_odu6o"]
+[ext_resource type="Theme" uid="uid://cfhpmj8r1ktku" path="res://ui_theme.tres" id="4_5aroa"]
+[ext_resource type="PackedScene" uid="uid://c7je5vqt6o6m1" path="res://scenes/gameover_menu/gameover_menu.tscn" id="5_nw6t5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_unc3u"]
 size = Vector3(60, 2, 60)
@@ -15,15 +18,34 @@ size = Vector3(60, 2, 60)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcli0"]
 albedo_color = Color(1, 0.117647, 1, 1)
 
-[sub_resource type="Curve3D" id="Curve3D_kfyow"]
+[sub_resource type="Curve3D" id="Curve3D_1qviv"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -15.8507, 1.15002, 25.6443, 0, 0, 0, 0, 0, 0, -13.6135, 1.15002, -23.5748, 0, 0, 0, 0, 0, 0, 16.4487, 1.15002, -23.6629, 0, 0, 0, 0, 0, 0, 15.8458, 1.15002, 25.9772, 0, 0, 0, 0, 0, 0, -15.8507, 1.15002, 25.6443),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -15.8439, 0, -22.7394, 0, 0, 0, 0, 0, 0, 16.2008, 0, -22.8438, 0, 0, 0, 0, 0, 0, 15.8877, 0, 24.0229, 0, 0, 0, 0, 0, 0, -15.8439, 0, 24.0229, 0, 0, 0, 0, 0, 0, -15.8439, 0, -22.7394),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_07d77")
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5aroa")
+
+[node name="Score" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 95.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0.745098, 0, 0.709804, 1)
+text = "Score : 0"
+script = ExtResource("3_odu6o")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -46,35 +68,37 @@ shadow_blur = 0.2
 [node name="Cylinders" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1259, 0.177855, -23.7885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -23)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8279, 0, -23.7907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -23)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9469, 0.177855, 26.1043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 24)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8862, 0, 25.8336)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 24)
 mesh = SubResource("CylinderMesh_5r2rt")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcli0")
 
 [node name="SpawnPath" type="Path3D" parent="."]
-curve = SubResource("Curve3D_kfyow")
+curve = SubResource("Curve3D_1qviv")
 
-[node name="Spawnlocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(0.998948, 0, -0.0454061, 0, 1, 0, 0.0454061, 0, 0.998948, -15.8507, 1.15002, 25.6443)
-rotation_mode = 1
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
+transform = Transform3D(0.00325782, 0, -0.999995, 0, 1, 0, 0.999995, 0, 0.00325782, -15.8439, 0, -22.7394)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="GameoverMenu" parent="." instance=ExtResource("5_nw6t5")]
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_dkmp2")]
 visible = false
@@ -89,4 +113,5 @@ current = true
 size = 30.0
 far = 500.0
 
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
