@@ -4,19 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://yp4f2fwhich2" path="res://art/player.glb" id="1_qlgfk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3b756"]
-radius = 0.724835
+radius = 0.75
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0869786, 0)
 collision_mask = 6
 script = ExtResource("1_kvm04")
 
 [node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10608, 0)
 
 [node name="player" parent="Pivot" instance=ExtResource("1_qlgfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766078, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.41828, 0, 0, 0, 1.41827, -0.00532202, 0, 0.00532202, 1.41827, 0, 1.24331, 0)
+transform = Transform3D(1.41828, 0, 0, 0, 1.41828, 0, 0, 0, 1.41828, 0, 1.1, 0)
 shape = SubResource("SphereShape3D_3b756")
