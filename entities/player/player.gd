@@ -32,9 +32,11 @@ func get_velocity_from_input(delta):
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		$Pivot.look_at(direction + position)
+		$AnimationPlayer.speed_scale = 4
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
+		$AnimationPlayer.speed_scale = 1
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -43,7 +45,8 @@ func get_velocity_from_input(delta):
 		# Handle jump.
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_impulse
-
+	
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 func handle_collisions():
 	# Iterate through all collisions that occurred this frame
