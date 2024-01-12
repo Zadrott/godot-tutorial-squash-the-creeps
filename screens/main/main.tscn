@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c385sp4m4irnl"]
+[gd_scene load_steps=11 format=3 uid="uid://c385sp4m4irnl"]
 
 [ext_resource type="Script" path="res://screens/main/main.gd" id="1_07d77"]
 [ext_resource type="PackedScene" uid="uid://bxfjfw0wc08q7" path="res://entities/player/player.tscn" id="1_7jlwg"]
 [ext_resource type="PackedScene" uid="uid://bgn6opoxq5ypp" path="res://screens/pause_menu/pause_menu.tscn" id="3_dkmp2"]
-[ext_resource type="Script" path="res://screens/main/Score.gd" id="3_odu6o"]
 [ext_resource type="Theme" uid="uid://cfhpmj8r1ktku" path="res://ui_theme.tres" id="4_5aroa"]
 [ext_resource type="PackedScene" uid="uid://c7je5vqt6o6m1" path="res://screens/gameover_menu/gameover_menu.tscn" id="5_nw6t5"]
 
@@ -45,7 +44,6 @@ offset_right = 95.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(0.745098, 0, 0.709804, 1)
 text = "Score : 0"
-script = ExtResource("3_odu6o")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

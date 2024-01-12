@@ -77,5 +77,5 @@ func die():
 
 
 func _on_mob_detector_body_entered(body):
-	print(body.name)	
+	print("Killed by: " + body.name)	
 	die()

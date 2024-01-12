@@ -2,9 +2,11 @@ extends Node
 
 
 @export var mob_scene : PackedScene = preload("res://entities/mob/mob.tscn")	
+
 @onready var pause_menu = $PauseMenu
 @onready var gameover_menu = $GameoverMenu
 
+var score : int = 0
 var paused = false
 
 
@@ -28,7 +30,7 @@ func _on_mob_timer_timeout():
 	mob.initialize(mob_spawn_location.position, player_position)
 	add_child(mob)
 	
-	mob.squashed.connect($UserInterface/Score._on_mob_squashed.bind())
+	mob.squashed.connect(_on_mob_squashed.bind())
 
 
 func pause_game():
@@ -44,7 +46,6 @@ func pause_game():
 
 
 func game_over():
-	var score = $UserInterface/Score.text
 	gameover_menu.display_score(score)
 	gameover_menu.show()
 	get_node("GameoverMenu/MarginContainer/VBoxContainer/Retry").grab_focus()
@@ -53,7 +54,12 @@ func game_over():
 func retry():
 	get_tree().reload_current_scene()
 	
-	
+
+func _on_mob_squashed():
+	score += 1
+	$UserInterface/Score.text = "Score : %s" % score
+
+
 func _on_player_hit():
 	$MobTimer.stop()
 	game_over()

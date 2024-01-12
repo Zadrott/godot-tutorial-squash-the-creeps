@@ -43,13 +43,13 @@ horizontal_alignment = 1
 [node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Reset" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+text = "Reset high score"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

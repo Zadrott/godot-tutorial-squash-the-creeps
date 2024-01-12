@@ -1,3 +1,4 @@
 .import
 logs/
 .godot/
+high_score.save
