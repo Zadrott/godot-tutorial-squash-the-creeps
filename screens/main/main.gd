@@ -30,9 +30,6 @@ func _on_mob_timer_timeout():
 	
 	mob.squashed.connect($UserInterface/Score._on_mob_squashed.bind())
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept") and $GameoverMenu.visible:
-		retry()
 
 func pause_game():
 	if paused:
@@ -41,6 +38,7 @@ func pause_game():
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
+		get_node("PauseMenu/MarginContainer/VBoxContainer/Resume").grab_focus()
 		
 	paused = !paused
 
@@ -49,6 +47,7 @@ func game_over():
 	var score = $UserInterface/Score.text
 	gameover_menu.display_score(score)
 	gameover_menu.show()
+	get_node("GameoverMenu/MarginContainer/VBoxContainer/Retry").grab_focus()
 
 
 func retry():

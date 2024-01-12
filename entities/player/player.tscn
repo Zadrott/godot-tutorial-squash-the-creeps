@@ -70,7 +70,6 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_q3kvo"),
 "float": SubResource("Animation_bp54m"),
-"float_2": SubResource("Animation_8ohhv")
 }
 
 [node name="Player" type="CharacterBody3D"]
